@@ -9,6 +9,7 @@ import { ArrowRight, ExternalLink, Zap, Target, Layers } from 'lucide-react';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 
+
 import { useEffect } from 'react';  
 /**
  * Home Page - SEO-Optimized with AI Experience Design Keywords

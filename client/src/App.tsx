@@ -16,18 +16,18 @@ function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/about"} component={About} />
-      <Route path={"/capabilities"} component={Capabilities} />
-      <Route path={"/ventures"} component={Ventures} />
-      <Route path={"/contact"} component={Contact} />
-      <Route path={"/team"} component={Team} />
-      <Route path={"ai-experience-design"} component={AIExperienceDesign} />
-      <Route path={"admin"} component={Admin} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/capabilities" component={Capabilities} />
+      <Route path="/ventures" component={Ventures} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/team" component={Team} />
+      <Route path="/ai-experience-design" component={AIExperienceDesign} />
+      <Route path="/admin" component={Admin} />
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
+
   );
 }
 
