@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1769513060807,
+      "tag": "0000_brainy_masked_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1769513154767,
+      "tag": "0001_legal_morph",
+      "breakpoints": true
+    }
+  ]
+}
