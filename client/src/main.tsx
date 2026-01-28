@@ -7,21 +7,48 @@ import superjson from "superjson";
 import App from "./App";
 import { getLoginUrl } from "./const";
 import "./index.css";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 
+/**
+ * Global SPA anchor handler
+ * Intercepts all internal anchor clicks and uses Wouter for client-side routing
+ */
+function AnchorHandler() {
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+
+      const anchor = target.closest("a") as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      // Only handle internal SPA links
+      if (href.startsWith("/") && !href.startsWith("//")) {
+        e.preventDefault();
+        setLocation(href);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [setLocation]);
+
+  return null; // Renders nothing
+}
 
 const queryClient = new QueryClient();
-
-
-
-
-
 
 const redirectToLoginIfUnauthorized = (error: unknown) => {
   if (!(error instanceof TRPCClientError)) return;
   if (typeof window === "undefined") return;
 
   const isUnauthorized = error.message === UNAUTHED_ERR_MSG;
-
   if (!isUnauthorized) return;
 
   window.location.href = getLoginUrl();
@@ -61,9 +88,9 @@ const trpcClient = trpc.createClient({
 createRoot(document.getElementById("root")!).render(
   <trpc.Provider client={trpcClient} queryClient={queryClient}>
     <QueryClientProvider client={queryClient}>
+      {/* Global SPA anchor support */}
+      <AnchorHandler />
       <App />
     </QueryClientProvider>
   </trpc.Provider>
-
-
 );
