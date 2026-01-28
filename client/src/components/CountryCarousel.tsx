@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, icons } from 'lucide-react';
 
 /**
  * Country Carousel Component - Swipeable carousel for target countries
@@ -13,16 +13,17 @@ export default function CountryCarousel() {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const countries = [
-    { name: 'UAE', flag: '🇦🇪', description: 'Leading digital innovation hub' },
-    { name: 'Saudi Arabia', flag: '🇸🇦', description: 'Vision 2030 transformation' },
-    { name: 'India', flag: '🇮🇳', description: 'Largest AI talent pool' },
-    { name: 'Australia', flag: '🇦🇺', description: 'Tech-forward economy' },
-    { name: 'Uzbekistan', flag: '🇺🇿', description: 'Emerging tech market' },
-    { name: 'Georgia', flag: '🇬🇪', description: 'Growing startup ecosystem' },
-    { name: 'Latvia', flag: '🇱🇻', description: 'Digital innovation leader' },
-    { name: 'Armenia', flag: '🇦🇲', description: 'Tech talent hub' },
-    { name: 'Bhutan', flag: '🇧🇹', description: 'Sustainable development focus' },
-    { name: 'Nepal', flag: '🇳🇵', description: 'Emerging digital market' },
+    { name: 'UAE', icon: 'https://flagsapi.com/AE/flat/64.png', description: 'Leading digital innovation hub' },
+    { name: 'Saudi Arabia', icon: 'https://flagsapi.com/SA/flat/64.png', description: 'Vision 2030 transformation' },
+    { name: 'India', icon: 'https://flagsapi.com/IN/flat/64.png', description: 'Largest AI talent pool' },
+    { name: 'Australia', icon: 'https://flagsapi.com/AU/flat/64.png', description: 'Tech-forward economy' },
+    { name: 'Uzbekistan', icon: 'https://flagsapi.com/UZ/flat/64.png', description: 'Emerging tech market' },
+    { name: 'Georgia', icon: 'https://flagsapi.com/GE/flat/64.png', description: 'Growing startup ecosystem' },
+    { name: 'Latvia', icon: 'https://flagsapi.com/LV/flat/64.png', description: 'Digital innovation leader' },
+    { name: 'Armenia', icon: 'https://flagsapi.com/AM/flat/64.png', description: 'Tech talent hub' },
+    { name: 'Bhutan', icon: 'https://flagsapi.com/BT/flat/64.png', description: 'Sustainable development focus' },
+    { name: 'Nepal', icon: 'https://flagsapi.com/NP/flat/64.png', description: 'Emerging digital market' },
+
   ];
 
   const itemsPerView = {
@@ -139,7 +140,7 @@ export default function CountryCarousel() {
                 style={{ width: `${100 / itemsToShow}%` }}
               >
                 <div className="p-3 md:p-4 lg:p-6 mx-1 md:mx-2 lg:mx-3 bg-card border border-border rounded-sm hover:border-primary transition-all duration-300 text-center h-full">
-                  <div className="text-5xl md:text-6xl lg:text-7xl mb-3 md:mb-4">{country.flag}</div>
+                  <div className="text-5xl md:text-6xl lg:text-7xl mb-3 md:mb-4"><img src={country.icon} className='mx-auto'/></div>
                   <p className="text-foreground font-semibold text-sm md:text-base mb-2">{country.name}</p>
                   <p className="text-xs md:text-sm text-muted-foreground">{country.description}</p>
                 </div>
@@ -176,11 +177,10 @@ export default function CountryCarousel() {
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              idx === currentIndex
+            className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex
                 ? 'bg-primary w-8'
                 : 'bg-border w-2 hover:bg-muted-foreground'
-            }`}
+              }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
         ))}
